@@ -1,4 +1,11 @@
-﻿Function Get-Folder($initialDirectory)
+﻿# Script to move assessment files from a starting folder to a file structure for each group
+# Use Ryan's tbutil cloud_migration_plans.js to download the 3 CSV files to a starting folder
+# This script will create subfolders based on the leading group name and copy the 3 files
+# into each new folder
+# Once in a nice structure, can use auto-assess-folder.ps1 to create the master spreadsheet
+
+
+Function Get-Folder($initialDirectory)
 
 {
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms")|Out-Null
@@ -14,20 +21,18 @@
     return $folder
 }
 
-#$folder = Get-Folder
-$folder = 'Z:\data\customers\Microsoft\pstest\Large Assessment'
+$folder = Get-Folder
+#$folder = 'Z:\data\customers\Microsoft\pstest\Large Assessment'
 $path = $folder + "\*breakdown*.csv"
 
 $files = get-childitem -Path $path
 
 foreach ($file in $files) {
-    $file.BaseName
     $groupname,$rest = $file.BaseName.Split('_')
     $newfoldername = $folder + "\" + $groupname
     $newfoldername
     New-Item -Path $newfoldername -ItemType Directory
     $stuff = $folder + "\" + $groupname + "_*.csv"
-    $stuff
     move-item $stuff $newfoldername
     
     }
