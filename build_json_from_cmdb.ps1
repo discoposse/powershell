@@ -1,7 +1,7 @@
 ##
 $id=0
-$data = Import-CSV "Z:\data\powershell\cmdb_civica.csv"
-$outfile = "Z:\data\powershell\cmdb_civica.txt"
+$data = Import-CSV "Z:\data\customers\Microsoft\version1\GoldenCharter\GC_Windows.csv"
+$outfile = "Z:\data\customers\Microsoft\version1\GoldenCharter\GC_Windows.txt"
 $stuff = '{"hosts": ['
 $stuff | out-file $outfile
 foreach ($row in $data) {

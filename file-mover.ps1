@@ -3,7 +3,7 @@
 # This script will create subfolders based on the leading group name and copy the 3 files
 # into each new folder
 # Once in a nice structure, can use auto-assess-folder.ps1 to create the master spreadsheet
-
+# Richard Stinton - April 2019
 
 Function Get-Folder($initialDirectory)
 
@@ -21,8 +21,9 @@ Function Get-Folder($initialDirectory)
     return $folder
 }
 
+# Get the folder to work on
 $folder = Get-Folder
-#$folder = 'Z:\data\customers\Microsoft\pstest\Large Assessment'
+
 $path = $folder + "\*breakdown*.csv"
 
 $files = get-childitem -Path $path
